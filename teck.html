@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text on Image</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* สีข้อความ */
+            font-size: 24px; /* ขนาดตัวอักษร */
+            font-weight: bold; /* น้ำหนักตัวอักษร */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="ดาวน์โหลด.jpg" alt="Your Image">
+        <div class="image-text">Your Text Here</div>
+        
+    </div>
+</body>
+</html>

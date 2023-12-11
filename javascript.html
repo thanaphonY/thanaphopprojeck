@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<style>
+    .box7{
+        width: 1150px;
+        margin: auto;
+        border: solid rgb(0, 0, 0) 1px;
+        height: 2750px;
+        background-color: white;
+    }
+    .navbar {
+        overflow: hidden;
+        background-color: #ffffff; /* สีพื้นหลังของแถบบน */
+    }
+    
+    .navbar a {
+        float: left;
+        display: block;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s; 
+    }
+    
+    .navbar a:hover {
+        background-color: #ddd;
+        color: #333; 
+    }
+  .box, .box1, .box2,.box3,.box4,.box5,.box6{
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    margin: 60px auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px 5px, rgba(0, 0, 0, 0.04) 0px 10px 10px 5px;
+    background-color: #ffc9c9
+    
+  }
+  </style> 
+</head>
+
+<body>
+<div class="box7">
+    <div class="navbar">
+        <a href="./index.html">Home</a>
+        <a href="./javascript.html">Javascript</a>
+        <a href="./apiandchartJs.html">Chart.js and Api</a>
+        <a href="./about.html">About</a>
+    </div>
+
+<div class="w3-container w3-padding-32 w3-center" id="API">
+  </div>
+<div class="w3-content w3-padding-64 w3-margin-top w3-center box" style="max-width:1564px">
+<h2>เรียงตัวอักษรจาก A - Z </h2>
+<p id="demo" style="font-size: 20px;">Hi</p>
+</div>
+
+<div class="box1">
+<h2 style="color: blue;">กดคลิ๊กเพื่อเปลี่ยน </h2>
+<p id="demo2" style="font-size: 20px;">Hi</p>
+<button onclick="myFunction()" class="w3-button w3-blue w3-section">กด</button>
+</div>
+
+<div class="box2">
+    <label for="userInput">กรุณาป้อนข้อความ:</label>
+    <input type="text" id="userInput">
+    <button onclick="checkInput()">ตรวจสอบ</button>
+    <p id="result"></p>
+</div>
+
+<div class="box3">
+    <h2 style="color: blue;">สุ่มลูกเต๋า</h2>
+    <button onclick="rollDice()">กดปุ่มเพื่อสุ่มลูกเต๋า</button>
+    <div id="result1"></div>
+</div>
+
+<div class="box4">
+    <label for="radiusInput">กรุณาป้อนรัศมีของวงกลม (เช่น 5):</label>
+    <input type="number" id="radiusInput" placeholder="ป้อนรัศมี...">
+    <button onclick="calculateCircumference()">คำนวณ</button>
+
+    <div id="resultContainer"></div>
+</div>
+
+<div class="w3-content w3-padding-100 w3-margin-top w3-center box5"> 
+  <h2>Animeเเนวต่างๆที่หลายๆคนชอบ!</h2>
+<canvas id="myChart1" style="width:100%;max-width:800px; " ></canvas> 
+</div>
+
+<div class="w3-content w3-padding-100 w3-margin-top w3-center box6">
+
+          <canvas id="myChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</div>
+
+<!-- End page content -->
+</div>
+<!-- Footer -->
+
+<script>
+  //document.getElementById("demo").innerHTML = "Hello World";
+
+  function printAlphabets() {
+  // สร้างตัวแปรเพื่อเก็บตัวอักษร A-Z
+  const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // ใช้ forEach เพื่อวนลูปผ่านทุกตัวอักษร
+  alphabets.split('').forEach((alphabet, index) => {
+    // ใช้ setTimeout เพื่อกำหนดระยะเวลาการแสดงผล
+    setTimeout(() => {
+      document.getElementById("demo").innerHTML = alphabet;
+      console.log(alphabet);
+    }, index * 1000); // 1000 milliseconds = 1 วินาที
+  });
+}
+printAlphabets();
+
+  function myFunction() {
+    document.getElementById("demo2").innerHTML = "Hello World";
+}
+
+function containsProfanity(text) {
+    const profanityWords = ['xxx', 'sex', 'porn'];
+    const lowercaseText = text.toLowerCase();
+
+    for (const word of profanityWords) {
+      if (lowercaseText.includes(word)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function checkInput() {
+    let userInput = document.getElementById('userInput').value;
+
+    if (containsProfanity(userInput)) {
+      document.getElementById('result').textContent = 'ข้อความมีคำหยาบ';
+    } else {
+      document.getElementById('result').textContent = 'ข้อความไม่มีคำหยาบ';
+    }
+  }
+function rollDice() {
+          // สุ่มตัวเลขจำนวนเต็ม 1 ถึง 6
+          var randomNumber = Math.floor(Math.random() * 6) + 1;
+      
+          // แสดงผลลัพธ์
+          document.getElementById('result1').innerText = 'แต้มที่ออก: ' + randomNumber;
+        }
+        function calculateCircumference() {
+            const radiusInput = document.getElementById('radiusInput');
+            const resultContainer = document.getElementById('resultContainer');
+
+            const radius = parseFloat(radiusInput.value);
+
+            if (isNaN(radius) || radius <= 0) {
+                resultContainer.innerHTML = "<p>โปรดป้อนค่ารัศมีที่มีค่ามากกว่าศูนย์</p>";
+            } else {
+                const pi = Math.PI;
+                const circumference = 2 * pi * radius;
+                resultContainer.innerHTML = `<p>ความยาวเส้นรอบวงของวงกลมคือ ${circumference.toFixed(2)}</p>`;
+            }
+        }
+</script>
+<script>
+    const xValues = ["H Hentai", "Shonen", "Harem", "Love Comedy", "Y"];
+    const yValues = [50, 49, 44, 40, 29];
+    const barColors = ["red", "green","blue","orange","brown"];
+    
+    new Chart("myChart1", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        title: {
+          display: true
+        }
+      }
+    });
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Fetch data from the JSON file
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        // Create the chart using the fetched data
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: '# Name',
+              data: data.data,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      })
+      .catch(error => console.error('Error fetching data:', error));
+    </script>
+
+</body>
+</html>
